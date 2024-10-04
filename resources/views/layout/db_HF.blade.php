@@ -292,22 +292,22 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                {{-- <a class="nav-link collapsed"
-                    class=" {{ request()->is('DbUsers') ? 'active' : '' }} || {{ request()->is('UsersInsert') ? 'active' : '' }}"
-                    data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> --}}
-                    <i class="bi bi-menu-button-wide"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
+                <a class="nav-link collapsed"
+                    class=" {{ request()->is('Dbguests') ? 'active' : '' }} || {{ request()->is('guestsInsert') ? 'active' : '' }}"
+                    data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>guests</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href="{{ route('DbUser') }}" class="{{ request()->is('DbUsers') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>All Users</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('Dbguest') }}" class="{{ request()->is('Dbguests') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>All guests</span>
+                        </a>
                     </li>
                     <li>
-                        {{-- <a href="{{ route('UserInsert') }}"
-                            class="{{ request()->is('UsersInsert') ? 'active' : '' }}"> --}}
+                        <a href="{{ route('guestInsert') }}"
+                            class="{{ request()->is('guestsInsert') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>User Insert</span>
-                        {{-- </a> --}}
+                        </a>
                     </li>
                 </ul>
             </li><!-- End Users Nav -->
