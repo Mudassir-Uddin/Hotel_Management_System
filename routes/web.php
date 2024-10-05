@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\guestsController;
+use App\Http\Controllers\roomsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +19,12 @@ Route::post('/guestsStore', [guestsController::class, 'Store']);
 Route::get('/guestsedit/{id}', [guestsController::class, 'edit']);
 Route::post('/guestsupdate/{id}', [guestsController::class, 'update']);
 Route::get('/guestsdelete/{id}', [guestsController::class, 'delete']);
+
+// DB rooms
+
+Route::get('/Dbrooms', [roomsController::class, 'rooms'])->name('Dbroom');
+Route::get('/roomsInsert', [roomsController::class, 'insert'])->name('roomInsert');
+Route::post('/roomsStore', [roomsController::class, 'Store']);
+Route::get('/roomsedit/{id}', [roomsController::class, 'edit']);
+Route::post('/roomsupdate/{id}', [roomsController::class, 'update']);
+Route::get('/roomsdelete/{id}', [roomsController::class, 'delete']);

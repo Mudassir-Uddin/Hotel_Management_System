@@ -295,7 +295,7 @@
                 <a class="nav-link collapsed"
                     class=" {{ request()->is('Dbguests') ? 'active' : '' }} || {{ request()->is('guestsInsert') ? 'active' : '' }}"
                     data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>guests</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-person"></i><span>guests</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
@@ -313,21 +313,21 @@
             </li><!-- End Users Nav -->
 
             <li class="nav-item">
-                {{-- <a class="nav-link collapsed {{ request()->is('DbClients') ? 'active' : '' }} || {{ request()->is('ClientsInsert') ? 'active' : '' }}"
-                    data-bs-target="#components" data-bs-toggle="collapse" href="#"> --}}
-                    <i class="bi bi-person"></i><span>Clients</span><i class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
+                <a class="nav-link collapsed {{ request()->is('Dbrooms') ? 'active' : '' }} || {{ request()->is('roomsInsert') ? 'active' : '' }}"
+                    data-bs-target="#components" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Rooms</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
                 <ul id="components" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href="{{ route('DbClient') }}" class="{{ request()->is('DbClients') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>All Clients</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('Dbroom') }}" class="{{ request()->is('Dbrooms') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>All Rooom</span>
+                        </a>
                     </li>
                     <li>
-                        {{-- <a href="{{ route('ClientInsert') }}"
-                            class="{{ request()->is('ClientsInsert') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>Clients Insert</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('roomInsert') }}"
+                            class="{{ request()->is('roomsInsert') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Rooms Insert</span>
+                        </a>
                     </li>
                 </ul>
             </li><!-- End Clients Nav -->
