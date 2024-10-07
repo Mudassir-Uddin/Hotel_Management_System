@@ -3,7 +3,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Rooms Tables</h1>
+            <h1>reservations Tables</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/Admindashboard">Home</a></li>
@@ -19,17 +19,18 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Room Table</h5>
+                            <h5 class="card-title">reservation Table</h5>
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Room_No</th>
-                                        <th>Room_Type</th>
-                                        <th>Bed_Count</th>
-                                        <th>Price_Per_Night</th>
-                                        <th>Status</th>
+                                        <th>guest_name</th>
+                                        <th>room_no</th>
+                                        <th>check_in_date</th>
+                                        <th>check_out_date</th>
+                                        <th>total_amount</th>
+                                        <th>status</th>
                                         <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -38,43 +39,31 @@
                                     @php
                                         $i = 0;
                                     @endphp
-                                    @foreach ($rooms as $ct)
+                                    @foreach ($reservations as $ct)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
-                                            <td>{{ $ct->room_number }}</td>
-                                            {{-- <td>{{ $ct->room_type }}</td> --}}
-
+                                            <td>{{ $ct->guests->name }}</td>
+                                            <td>{{ $ct->rooms->room_number }}</td>
+                                            <td>{{ $ct->check_in_date }}</td>
+                                            <td>{{ $ct->check_out_date }}</td>
+                                            <td>{{ $ct->total_amount }}</td>
                                             <td>
-                                                @if ($ct->room_type == 1)
-                                                    <option value="1">Single</option>
-                                                @elseif ($ct->room_type == 2)
-                                                    <option value="2">Double</option>
+                                                @if ($ct->status == 1)
+                                                    <option value="1">Booked</option>
+                                                @elseif ($ct->status == 2)
+                                                    <option value="2">Checked-In</option>
                                                     {{-- @endforeach --}}
                                                 @else
-                                                    <option value="3">Suite</option>
-                                                @endif
-                                            </td>
-
-                                            <td>{{ $ct->bed_count }}</td>
-                                            <td>{{ $ct->price_per_night }}</td>
-                                            {{-- <td>{{ $ct->availability_status }}</td> --}}
-                                            <td>
-                                                @if ($ct->availability_status == 1)
-                                                    <option value="1">Available</option>
-                                                @elseif ($ct->availability_status == 2)
-                                                    <option value="2">Occupied</option>
-                                                    {{-- @endforeach --}}
-                                                @else
-                                                    <option value="3">Under Maintenance</option>
+                                                    <option value="3">Cancelled</option>
                                                 @endif
                                             </td>
                                             <td>{{ $ct->updated_at = date('Y-m-d') }}</td>
-                                                <td>
-                                                    <button class="btn btn-warning "><a class="text-white"
-                                                            href="{{ url('/roomsedit') }}/{{ $ct->id * 548548 }}">Edit</a></button>
-                                                    <button onclick="myfun({{ $ct->id }})"
-                                                        class="btn btn-danger">Delete</button>
-                                                </td>
+                                            <td>
+                                                <button class="btn btn-warning "><a class="text-white"
+                                                        href="{{ url('/reservationsedit') }}/{{ $ct->id }}">Edit</a></button>
+                                                <button onclick="myfun({{ $ct->id }})"
+                                                    class="btn btn-danger">Delete</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -110,7 +99,7 @@
                         'success'
 
                     )
-                    window.location.href = "{{ url('/roomsdelete') }}/" + id
+                    window.location.href = "{{ url('/reservationsdelete') }}/" + id
                 }
             })
             // if (ans) {

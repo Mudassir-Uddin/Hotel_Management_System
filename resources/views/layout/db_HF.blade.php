@@ -306,7 +306,7 @@
                     <li>
                         <a href="{{ route('guestInsert') }}"
                             class="{{ request()->is('guestsInsert') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>User Insert</span>
+                            <i class="bi bi-circle"></i><span>Guest Insert</span>
                         </a>
                     </li>
                 </ul>
@@ -334,24 +334,24 @@
 
 
             <li class="nav-item">
-                {{-- <a class="nav-link collapsed {{ request()->is('DbProjectClients') ? 'active' : '' }} || {{ request()->is('ProjectClientsInsert') ? 'active' : '' }}"
-                    data-bs-target="#compon-nav" data-bs-toggle="collapse" href="#"> --}}
-                    <i class="bi bi-menu-button-wide"></i><span>Clients Project</span><i
+                <a class="nav-link collapsed {{ request()->is('Dbreservations') ? 'active' : '' }} || {{ request()->is('reservationsInsert') ? 'active' : '' }}"
+                    data-bs-target="#compon-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Reservation</span><i
                         class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
+                </a>
                 <ul id="compon-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href="{{ route('DbProjectClient') }}"> --}}
-                            {{-- <i class="bi bi-circle {{ request()->is('DbProjectClients') ? 'active' : '' }}"></i><span>All --}}
-                                Clients Project</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('Dbreservation') }}">
+                            <i class="bi bi-circle {{ request()->is('Dbreservations') ? 'active' : '' }}"></i><span>All
+                                Reservation</span>
+                        </a>
                     </li>
                     <li>
-                        {{-- <a href="{{ route('ProjectClientInsert') }}"> --}}
-                            {{-- <i
-                                class="bi bi-circle {{ request()->is('ProjectClientsInsert') ? 'active' : '' }}"></i><span>Clients
-                                Project Insert</span>
-                        </a> --}}
+                        <a href="{{ route('reservationInsert') }}">
+                            <i
+                                class="bi bi-circle {{ request()->is('reservationsInsert') ? 'active' : '' }}"></i><span>Reservation
+                                Insert</span>
+                        </a>
                     </li>
                 </ul>
             </li><!-- End Client Project Nav -->

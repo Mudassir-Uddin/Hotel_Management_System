@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->integer('total_amount');
-            $table->string('status');
+            $table->integer('status');
             $table->timestamps();
         });
     }

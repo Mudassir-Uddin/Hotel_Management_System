@@ -35,7 +35,7 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-
+{{-- 
                                 <div class="form-floating mb-3">
                                     <input type="text" name="room_type" class="form-control" value="{{ old('room_type') }}"
                                         id="floatingText" placeholder="room_type">
@@ -43,8 +43,20 @@
                                     @error('room_type')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 
+                                <label for="formFileLg" class="form-label">Room_Type</label>
+                                <select name="room_type" id="" class="form-select mb-3">
+                                    <option value="0" selected disabled>Select Room Type</option>
+                                    <option value="1">Single</option>
+                                    <option value="2">Double</option>
+                                    <option value="3">Suite</option>
+                                </select>
+                                @error('room_type')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                
+
                                 <div class="form-floating mb-3">
                                   <input type="number" name="bed_count" class="form-control" value="{{ old('bed_count') }}"
                                       id="floatingText" placeholder="bed_count">
@@ -63,14 +75,25 @@
                                 @enderror
                             </div>
                             
-                            <div class="form-floating mb-3">
+                            <label for="formFileLg" class="form-label">Status</label>
+                            <select name="availability_status" id="" class="form-select mb-3">
+                                <option value="0" selected disabled>Select Status</option>
+                                <option value="1">Available</option>
+                                <option value="2">Occupied</option>
+                                <option value="3">Under Maintenance</option>
+                            </select>
+                            @error('availability_status')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+
+                            {{-- <div class="form-floating mb-3">
                               <input type="text" name="availability_status" class="form-control" value="{{ old('availability_status') }}"
                                   id="floatingText" placeholder="availability_status">
                               <label for="floatingText">Availability_Status</label>
                               @error('availability_status')
                                   <p class="text-danger">{{ $message }}</p>
                               @enderror
-                          </div>
+                          </div> --}}
 
                                 <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Insert</button>
                             </form>

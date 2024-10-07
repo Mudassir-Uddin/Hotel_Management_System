@@ -41,7 +41,7 @@ class roomsController extends Controller
 
     }
     function edit($id)
-    {
+    {   
         $room = rooms::Where('id', $id/548548)->first();
         return view('dashboard.rooms.edit', compact('room'));
     }

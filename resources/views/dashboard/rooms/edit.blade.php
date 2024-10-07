@@ -32,14 +32,31 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-floating mb-3">
+                                {{-- <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingText" value="{{ $room->room_type }}"
                                         name="room_type" placeholder="jhondoe">
                                     <label for="floatingText">Room_Type</label>
                                     @error('room_type')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                </div>
+                                </div> --}}
+
+                                
+                                <label for="formFileLg" class="form-label">room_type</label>
+                                <select name="room_type" id="" class="form-select mb-3">
+                                    @if ($room->room_type == 1)
+                                        {{-- @foreach ($Service as $sr) --}}
+                                        <option value="1">---Single---</option>
+                                    @elseif ($room->room_type == 2)
+                                        <option value="2">---Double---</option>
+                                        {{-- @endforeach --}}
+                                    @else
+                                        <option value="3">---Suite---</option>
+                                    @endif
+                                    <option value="1">Single</option>
+                                    <option value="2">Double</option>
+                                    <option value="3">Suite</option>
+                                </select>
 
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" id="floatingText" value="{{ $room->bed_count }}"
@@ -60,14 +77,31 @@
                                     @enderror
                                 </div>
                                 
-                                <div class="form-floating mb-3">
+
+                                
+                                <label for="formFileLg" class="form-label">Status</label>
+                                <select name="availability_status" id="" class="form-select mb-3">
+                                    @if ($room->availability_status == 1)
+                                        {{-- @foreach ($Service as $sr) --}}
+                                        <option value="1">---Available---</option>
+                                    @elseif ($room->availability_status == 2)
+                                        <option value="2">---Occupied---</option>
+                                        {{-- @endforeach --}}
+                                    @else
+                                        <option value="3">---Under Maintenance---</option>
+                                    @endif
+                                    <option value="1">Available</option>
+                                    <option value="2">Occupied</option>
+                                    <option value="3">Under Maintenance</option>
+                                </select>
+                                {{-- <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingText" value="{{ $room->availability_status }}"
                                         name="availability_status" placeholder="jhondoe">
                                     <label for="floatingText">Availability_Status</label>
                                     @error('availability_status')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <button type="submit" class="btn btn-primary py-3 w-100 mb-4">eidt</button>
                             </form>

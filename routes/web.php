@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\guestsController;
+use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\roomsController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,12 @@ Route::post('/roomsStore', [roomsController::class, 'Store']);
 Route::get('/roomsedit/{id}', [roomsController::class, 'edit']);
 Route::post('/roomsupdate/{id}', [roomsController::class, 'update']);
 Route::get('/roomsdelete/{id}', [roomsController::class, 'delete']);
+
+// DB reservations
+
+Route::get('/Dbreservations', [ReservationsController::class, 'reservations'])->name('Dbreservation');
+Route::get('/reservationsInsert', [reservationsController::class, 'insert'])->name('reservationInsert');
+Route::post('/reservationsStore', [reservationsController::class, 'Store']);
+Route::get('/reservationsedit/{id}', [reservationsController::class, 'edit']);
+Route::post('/reservationsupdate/{id}', [reservationsController::class, 'update']);
+Route::get('/reservationsdelete/{id}', [reservationsController::class, 'delete']);

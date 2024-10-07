@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('room_type',50);
             $table->integer('bed_count');
             $table->integer('price_per_night');
-            $table->string('availability_status');
+            $table->integer('availability_status');
             $table->timestamps();
         });
     }
