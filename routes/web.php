@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\guestsController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\roomsController;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,12 @@ Route::post('/reservationsStore', [reservationsController::class, 'Store']);
 Route::get('/reservationsedit/{id}', [reservationsController::class, 'edit']);
 Route::post('/reservationsupdate/{id}', [reservationsController::class, 'update']);
 Route::get('/reservationsdelete/{id}', [reservationsController::class, 'delete']);
+
+// DB reservations
+
+Route::get('/Dbpayments', [PaymentController::class, 'payments'])->name('Dbpayment');
+Route::get('/paymentsInsert', [paymentController::class, 'insert'])->name('paymentInsert');
+Route::post('/paymentsStore', [paymentController::class, 'Store']);
+Route::get('/paymentsedit/{id}', [paymentController::class, 'edit']);
+Route::post('/paymentsupdate/{id}', [paymentController::class, 'update']);
+Route::get('/paymentsdelete/{id}', [paymentController::class, 'delete']);

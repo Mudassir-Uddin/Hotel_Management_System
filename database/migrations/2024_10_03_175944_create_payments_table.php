@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('reservations');
-            $table->string('payment_method');
+            $table->integer('payment_method');
             $table->integer('amount_paid');
             $table->timestamps();
         });

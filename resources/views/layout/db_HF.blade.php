@@ -357,23 +357,23 @@
             </li><!-- End Client Project Nav -->
 
             <li class="nav-item">
-                {{-- <a class="nav-link collapsed {{ request()->is('DbProjects') ? 'active' : '' }} || {{ request()->is('ProjectsInsert') ? 'active' : '' }}"
-                    data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> --}}
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Projects</span><i
+                <a class="nav-link collapsed {{ request()->is('Dbpayments') ? 'active' : '' }} || {{ request()->is('paymentsInsert') ? 'active' : '' }}"
+                    data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>payments</span><i
                         class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
+                </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href="{{ route('DbProject') }}"
-                            class="{{ request()->is('DbProjects') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>All Projects</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('Dbpayment') }}"
+                            class="{{ request()->is('Dbpayments') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>All payments</span>
+                        </a>
                     </li>
                     <li>
-                        {{-- <a href="{{ route('ProjectInsert') }}"
-                            class="{{ request()->is('ProjectsInsert') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>Projects Insert</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('paymentInsert') }}"
+                            class="{{ request()->is('paymentsInsert') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>payments Insert</span>
+                        </a>
                     </li>
                 </ul>
             </li><!-- End Tables Nav -->
