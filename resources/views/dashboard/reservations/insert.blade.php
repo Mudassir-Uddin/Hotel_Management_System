@@ -45,14 +45,17 @@
                                     <select name="room_id" id="" class="form-select mb-3">
                                         <option value="0" selected disabled>Select Room No</option>
                                         @foreach ($RoomId as $sr)
-                                            <option value="{{ $sr->id }}">{{ $sr->room_number }}</option>
+                                        {{-- @if ($reservation == $reservations->check_in_date || $reservations->check_out_date) --}}
+                                        <option disabled value="{{ $sr->id }}">{{ $sr->room_number }}</option>
+                                        {{-- @else --}}
+                                        <option value="{{ $sr->id }}">{{ $sr->room_number }}</option>
+                                        {{-- @endif --}}
                                         @endforeach
                                     </select>
                                     <label for="floatingText">Room no</label>
                                     @error('room_id')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-
                                 </div>
 
                                 <div class="form-floating mb-3">

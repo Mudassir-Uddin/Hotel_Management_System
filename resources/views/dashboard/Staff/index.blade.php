@@ -3,7 +3,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>payments Tables</h1>
+            <h1>Staff Tables</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/Admindashboard">Home</a></li>
@@ -19,15 +19,18 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Payment Table</h5>
+                            <h5 class="card-title">Staff Table</h5>
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Reservation_Id</th>
-                                        <th>payment_method</th>
-                                        <th>amount_paid</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Role</th>
+                                        <th>Salary</th>
+                                        <th>date_of_joining</th>
                                         <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -36,30 +39,22 @@
                                     @php
                                         $i = 0;
                                     @endphp
-                                    @foreach ($payments as $ct)
+                                    @foreach ($Staff as $ct)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
-                                            <td>{{ $ct->reservation->guests->name }}</td>
-                                            <td>
-                                                @if ($ct->payment_method == 1)
-                                                    <option value="1">Credit Card</option>
-                                                @elseif ($ct->payment_method == 2)
-                                                    <option value="2">Debit Card</option>
-                                                    {{-- @endforeach --}}
-                                                @elseif ($ct->payment_method == 3)
-                                                    <option value="3">Cash</option>
-                                                    @else
-                                                        <option value="4">Online Transfer</option>
-                                                @endif
-                                            </td>
-                                            <td>{{ $ct->amount_paid }}</td>
+                                            <td>{{ $ct->name }}</td>
+                                            <td>{{ $ct->email }}</td>
+                                            <td>{{ $ct->phone_number }}</td>
+                                            <td>{{ $ct->role }}</td>
+                                            <td>{{ $ct->salary }}</td>
+                                            <td>{{ $ct->date_of_joining }}</td>
                                             <td>{{ $ct->updated_at = date('Y-m-d') }}</td>
-                                            <td>
-                                                <button class="btn btn-warning "><a class="text-white"
-                                                        href="{{ url('/paymentsedit') }}/{{ $ct->id }}">Edit</a></button>
-                                                <button onclick="myfun({{ $ct->id }})"
-                                                    class="btn btn-danger">Delete</button>
-                                            </td>
+                                                <td>
+                                                    <button class="btn btn-warning "><a class="text-white"
+                                                            href="{{ url('/Staffedit') }}/{{ $ct->id * 548548 }}">Edit</a></button>
+                                                    <button onclick="myfun({{ $ct->id }})"
+                                                        class="btn btn-danger">Delete</button>
+                                                </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -95,7 +90,7 @@
                         'success'
 
                     )
-                    window.location.href = "{{ url('/paymentsdelete') }}/" + id
+                    window.location.href = "{{ url('/Staffdelete') }}/" + id
                 }
             })
             // if (ans) {

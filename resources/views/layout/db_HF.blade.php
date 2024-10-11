@@ -379,26 +379,26 @@
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
-                {{-- <a class="nav-link collapsed {{ request()->is('DbCategories') ? 'active' : '' }} || {{ request()->is('CategoriesInsert') ? 'active' : '' }}"
-                    data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> --}}
-                    <i class="bi bi-journal-text"></i><span>Categories</span><i
+                <a class="nav-link collapsed {{ request()->is('Dbstaffs') ? 'active' : '' }} || {{ request()->is('staffsInsert') ? 'active' : '' }}"
+                    data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-journal-text"></i><span>staffs</span><i
                         class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
+                </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href="{{ route('DbCategory') }}"
-                            class="{{ request()->is('DbCategories') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>All Categories</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('Dbstaff') }}"
+                            class="{{ request()->is('Dbstaffs') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>All staffs</span>
+                        </a>
                     </li>
                     <li>
-                        {{-- <a href="{{ route('CategoryInsert') }}"
-                            class="{{ request()->is('CategoriesInsert') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>Category Insert</span>
-                        {{-- </a> --}}
+                        <a href="{{ route('staffInsert') }}"
+                            class="{{ request()->is('staffsInsert') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>staff Insert</span>
+                        </a>
                     </li>
                 </ul>
-            </li><!-- End Category Nav -->
+            </li><!-- End staff Nav -->
 
             
             <li class="nav-item">

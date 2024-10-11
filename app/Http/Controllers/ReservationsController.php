@@ -19,8 +19,9 @@ class ReservationsController extends Controller
     {
         $GuestId = guests::all();
         $RoomId = rooms::all();
-        $reservations = reservations::all();
-        return view('dashboard.reservations.insert',compact('GuestId','RoomId','reservations'));
+        $reservation = reservations::all();
+        $reservations = reservations::find('check_in_date' ,'check_in_date' );
+        return view('dashboard.reservations.insert',compact('GuestId','RoomId','reservations','reservation'));
     }
 
     function Store(Request $req)
