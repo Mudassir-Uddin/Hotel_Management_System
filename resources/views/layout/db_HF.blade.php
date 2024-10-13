@@ -39,6 +39,14 @@
 
 <body>
 
+    @php
+    use Illuminate\Support\Facades\Session;
+    $userRole = '';
+    if (Session::has('role')) {
+        $userRole = Session::get('role');
+    }
+@endphp
+
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -211,23 +219,23 @@
                 </li><!-- End Messages Nav -->
 
                 <li class="nav-item dropdown pe-3">
-                    {{-- @if (session()->has('email')) --}}
+                    @if (session()->has('email'))
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        {{-- <img src="{{ session()->get('img') }}" alt="Profile" --}}
-                            {{-- class="rounded-circle"> --}}
-                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2">{{ session()->get('name') }}</span> --}}
-                        {{-- @else --}}
-                        {{-- <a href="{{ url('/login') }}" class="my-2" style="font-size:25px;">Login</a> --}}
+                        <img src="{{ session()->get('img') }}" alt="Profile"
+                            class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ session()->get('name') }}</span>
+                        @else
+                        <a href="{{ url('/login') }}" class="my-2" style="font-size:25px;">Login</a>
                     </a><!-- End Profile Iamge Icon -->
-                    {{-- @endif --}}
+                    @endif
                     {{-- <span>Admin</span> --}}
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            {{-- <h6>{{ session()->get('name') }}</h6> --}}
-                            {{-- <span>{{session()->get('role')==3 ?  "Visitor" : "Admin"}}</span> --}}
+                            <h6>{{ session()->get('name') }}</h6>
+                            <span>{{session()->get('role')==3 ?  "Visitor" : "Admin"}}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -264,7 +272,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="{{url('/logout')}}">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>

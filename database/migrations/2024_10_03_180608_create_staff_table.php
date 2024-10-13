@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
-            $table->string('email',100)->unique();
+            $table->unsignedBigInteger('User_id');
+            $table->foreign('User_id')->references('id')->on('user');
             $table->tinyText('phone_number');
-            $table->string('role',50);
             $table->integer('salary');
             $table->string('date_of_joining');
             $table->timestamps();

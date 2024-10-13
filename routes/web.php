@@ -80,3 +80,12 @@ Route::get('/Usersedit/{id}', [UsersController::class, 'edit']);
 Route::post('/Usersupdate/{id}', [UsersController::class, 'update']);
 Route::get('/Usersdelete/{id}', [UsersController::class, 'delete']);
 
+//____________ Authentication _____________________
+#region Auth
+Route::get('/register', [AuthenticationController::class,'register']);
+Route::post('/registerstore', [AuthenticationController::class,'registerstore']);
+Route::get('/login', [AuthenticationController::class,'login']);
+Route::post('/loginstore', [AuthenticationController::class,'loginstore']);
+Route::get('/logout', [AuthenticationController::class,'logout']);
+Route::get('/update', [AuthenticationController::class,'update']);
+#endregion

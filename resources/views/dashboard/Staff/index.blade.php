@@ -42,10 +42,10 @@
                                     @foreach ($Staff as $ct)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
-                                            <td>{{ $ct->name }}</td>
-                                            <td>{{ $ct->email }}</td>
+                                            <td>{{ $ct->user->name }}</td>
+                                            <td>{{ $ct->user->email }}</td>
                                             <td>{{ $ct->phone_number }}</td>
-                                            <td>{{ $ct->role }}</td>
+                                            <td>{{ $ct->user->role }}</td>
                                             <td>{{ $ct->salary }}</td>
                                             <td>{{ $ct->date_of_joining }}</td>
                                             <td>{{ $ct->updated_at = date('Y-m-d') }}</td>

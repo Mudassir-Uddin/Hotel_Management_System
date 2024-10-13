@@ -11,4 +11,9 @@ class Staff extends Model
     
     protected $table = "Staff";
     protected $primaryKey = "id";
+    
+    public function user()
+    {
+        return $this->belongsTo(user::class, 'User_id');
+    }
 }
