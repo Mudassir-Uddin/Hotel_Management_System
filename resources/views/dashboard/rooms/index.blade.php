@@ -25,6 +25,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Image</th>
                                         <th>Room_No</th>
                                         <th>Room_Type</th>
                                         <th>Bed_Count</th>
@@ -41,6 +42,8 @@
                                     @foreach ($rooms as $ct)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
+                                    <td><img src="/{{ $ct->img }}" width="80px" height="50px"
+                                        class="rounded" alt=""></td>
                                             <td>{{ $ct->room_number }}</td>
                                             {{-- <td>{{ $ct->room_type }}</td> --}}
 

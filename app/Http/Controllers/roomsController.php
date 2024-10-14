@@ -22,6 +22,7 @@ class roomsController extends Controller
     {
 
         $req->validate([
+            'img' => 'required | image | mimes:png,jpg',
             'room_number' => 'required | max:5 | min:3',
             'room_type' => 'required | max:40',
             'bed_count' => 'required | max:2 | min:1',
@@ -29,7 +30,14 @@ class roomsController extends Controller
             'availability_status' => 'required'
         ]);
 
+        
+        $img = $req->img;
+        $imgname = $img->getClientOriginalName();
+        $imgname = time() . "__" . $imgname;
+        $img->move("images/Roomimages/", $imgname);
+
             $room = new rooms;
+            $room->img = "images/Roomimages/$imgname";
             $room->room_number = $req->room_number;
             $room->room_type = $req->room_type;
             $room->bed_count = $req->bed_count;
@@ -48,7 +56,21 @@ class roomsController extends Controller
     function update(Request $req, $id)
     {
         $room = rooms::find($id);
-        
+        $imgname = $room->img;
+        if ($req->hasfile('img')) {
+            
+            $img = $req->img;
+            $imgname = $img->getClientOriginalName();
+            $imgname = time() . "__" . $imgname;
+            $img->move("images/Roomimages/", $imgname);
+            $imgname = "images/Roomimages/".$imgname;
+            if($room->img){
+                if(file_exists(public_path($room->img))){
+                    unlink(public_path($room->img));
+                }
+            }
+        }
+            $room->img = $imgname;
             $room->room_number = $req->room_number;
             $room->room_type = $req->room_type;
             $room->bed_count = $req->bed_count;
@@ -64,7 +86,15 @@ class roomsController extends Controller
     function delete($id)
     {
         $st = rooms::find($id);
-        $st->delete();
+        if ($st) {
+            if($st->img){
+                if(file_exists(public_path($st->img))){
+                    unlink(public_path($st->img));
+                }
+            }
+            $st->delete();
+            return redirect('/Dbrooms');
+        }
         return redirect('/Dbrooms');
     }
 

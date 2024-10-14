@@ -27,6 +27,16 @@
 
                                 @csrf
 
+                                <div class="mb-3">
+                                    <label for="formFileLg" class="form-label">Image</label>
+                                    <input class="form-control form-control-lg" name="img" id="formFileLg"
+                                        type="file">
+        
+                                    @error('img')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" id="floatingText" name="room_number"
                                         value="{{ old('room_number') }}" placeholder="room_number">

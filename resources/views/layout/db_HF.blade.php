@@ -344,7 +344,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed {{ request()->is('Dbreservations') ? 'active' : '' }} || {{ request()->is('reservationsInsert') ? 'active' : '' }}"
                     data-bs-target="#compon-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Reservation</span><i
+                    <i class="bi bi-bar-chart"></i><span>Reservation</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="compon-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -431,53 +431,6 @@
                 </ul>
             </li><!-- End Service Nav -->
 
-            <li class="nav-item">
-                {{-- <a class="nav-link collapsed {{ request()->is('DbTechnologies') ? 'active' : '' }} || {{ request()->is('TechnologiesInsert') ? 'active' : '' }}"
-                    data-bs-target="#charts-nav" data-bs-toggle="collapse"> --}}
-                    <i class="bi bi-bar-chart"></i><span>Technologies</span><i class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
-                <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        {{-- <a href="{{ route('DbTechnologie') }}"
-                            class="{{ request()->is('DbTechnologies') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>All Technology</span>
-                        {{-- </a> --}}
-                    </li>
-                    <li>
-                        {{-- <a href="{{ route('TechnologieInsert') }}"
-                            class="{{ request()->is('TechnologiesInsert') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>Technology Insert</span>
-                        {{-- </a> --}}
-                    </li>
-                </ul>
-            </li><!-- End Technology Nav -->
-
-            <li class="nav-item">
-                {{-- <a class="nav-link collapsed {{ request()->is('DbClientsReviews') ? 'active' : '' }} || {{ request()->is('ClientsReviewsInsert') ? 'active' : '' }}" data-bs-target="#icons-nav" data-bs-toggle="collapse" > --}}
-                    <i class="bi bi-gem"></i><span>Clients Reviews</span><i class="bi bi-chevron-down ms-auto"></i>
-                {{-- </a> --}}
-                <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        {{-- <a href="{{ route('DbClientsReview') }}" class="{{ request()->is('DbClientsReviews') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>All Clients Reviews</span>
-                        {{-- </a> --}}
-                    </li>
-                    <li>
-                        {{-- <a href="{{ route('ClientsReviewInsert') }}" class="{{ request()->is('ClientsReviewsInsert') ? 'active' : '' }}"> --}}
-                            <i class="bi bi-circle"></i><span>Clients Reviews Insert</span>
-                        {{-- </a> --}}
-                    </li>
-                </ul>
-            </li><!-- what_is_says_our_clients -->
-
-            {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav --> --}}
-
-
       <li class="nav-item">
         {{-- <a class="nav-link collapsed {{ request()->is('DbContacts') ? 'active' : '' }} || {{ request()->is('ContactsInsert') ? 'active' : '' }}"
             data-bs-target="#charts-n" data-bs-toggle="collapse"> --}}
@@ -500,14 +453,14 @@
     </li><!-- End Contact Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
+                <a class="nav-link collapsed" href="{{url('/register')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Register</span>
                 </a>
             </li><!-- End Register Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
+                <a class="nav-link collapsed" href="{{url('/login')}}">
                     <i class="bi bi-box-arrow-in-right"></i>
                     <span>Login</span>
                 </a>

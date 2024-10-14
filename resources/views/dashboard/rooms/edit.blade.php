@@ -23,6 +23,19 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
+                                <div class="mb-3">
+                                    <label for="formFileLg" class="form-label">Image</label>
+                                    <input class="form-control  form-control" name="img" id="formFileLg"
+                                        type="file">
+                                    @error('img')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                    <br>
+                                    @if ($st->img != null)
+                                        Old Image : <img src="{{url($st->img)}}" class="img-fluid rounded" width="80px" height="50px" />
+                                    @endif
+                                </div>
+                                
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" id="floatingText" value="{{ $room->room_number }}"
                                         name="room_number" placeholder="jhondoe">
