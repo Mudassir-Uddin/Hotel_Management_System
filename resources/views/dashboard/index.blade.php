@@ -1,107 +1,196 @@
 @extends('layout.db_HF')
 @section('mydashboard')
     
-  <main id="main" class="main">
+   
+<main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-      <div class="row">
+  <section class="section dashboard">
+    <div class="row">
 
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
+      <!-- Left side columns -->
+      <div class="col-lg-8">
+        <div class="row">
 
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
+          <!-- Sales Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card sales-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Room Services <span>| This Year</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-life-preserver"></i>
-                    </div>
-                    <div class="ps-3">
-                      {{-- <h6>{{$SValue}}</h6> --}}
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li>
-                      {{-- <a href="{{ route('DbProject') }}"
-                          class="{{ request()->is('DbProjects') ? 'active' : '' }} dropdown-item"> --}}
-                          All Projects
-                      {{-- </a> --}}
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
                   </li>
-                  
-                  <li>
-                    {{-- <a href="{{ route('ProjectInsert') }}"
-                        class="{{ request()->is('ProjectsInsert') ? 'active' : '' }}  dropdown-item"> --}}
-                        Projects Insert
-                    {{-- </a> --}}
-                </li>
-                  </ul>
+
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Services <span>| This Year</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-life-preserver"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{$SValue}}</h6>
+                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                  </div>
                 </div>
+              </div>
 
-                <div class="card-body">
-                  <h5 class="card-title">Rooms <span>| This Month</span></h5>
+            </div>
+          </div><!-- End Sales Card -->
 
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-hospital"></i>
-                    </div>
-                    <div class="ps-3">
-                      {{-- <h6>{{$PValue}}</h6> --}}
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+          <!-- Revenue Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
 
-                    </div>
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+
+                  <li>
+                    <a href="{{ route('DbUser') }}"
+                        class="{{ request()->is('DbUsers') ? 'active' : '' }} dropdown-item">
+                        All Users
+                    </a>
+                </li>
+                
+                <li>
+                  <a href="{{ route('UserInsert') }}"
+                      class="{{ request()->is('UsersInsert') ? 'active' : '' }}  dropdown-item">
+                      Users Insert
+                  </a>
+              </li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Users <span>| This Month</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cast"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{$PValue}}</h6>
+                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Revenue Card -->
+
+          <!-- Client Card -->
+          <div class="col-xxl-4 col-xl-6">
+
+            <div class="card info-card customers-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+                  <li>
+                    <a href="{{ route('Dbstaff') }}" class="{{ request()->is('Dbstaffs') ? 'active' : '' }} dropdown-item">
+                        All Staffs
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('staffInsert') }}"
+                        class="{{ request()->is('staffsInsert') ? 'active' : '' }} dropdown-item">
+                        Staffs Insert
+                    </a>
+                </li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Staffs <span>| This Year</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-person-hearts"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{$CValue}}</h6>
+                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
                   </div>
                 </div>
 
               </div>
-            </div><!-- End Revenue Card -->
+            </div>
 
-            <!-- Client Card -->
-            <div class="col-xxl-4 col-xl-6">
+          </div><!-- End Client Card -->
+
+             <!-- Project-Client Card -->
+             <div class="col-xxl-4 col-xl-6">
+{{-- 
+              <div class="card info-card customers-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+                    <li>
+                      <a href="{{ route('DbProjectClient') }}" class="{{ request()->is('DbProjectStaffs') ? 'active' : '' }} dropdown-item">
+                          All Staffs Project
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('ProjectClientInsert') }}" class="{{ request()->is('ProjectStaffsInsert') ? 'active' : '' }} dropdown-item">
+                      Staffs Project Insert
+                      </a>
+                  </li>
+                  </ul>
+                </div> --}}
+
+                <div class="card-body">
+                  <h5 class="card-title">Staffs-Project <span>| This Month</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-laptop"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{$PCValue}}</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Project-Client Card -->
+
+            
+             <!-- Project-Client Card -->
+             <div class="col-xxl-4 col-xl-6">
 
               <div class="card info-card customers-card">
 
@@ -112,28 +201,28 @@
                       <h6>Filter</h6>
                     </li>
                     <li>
-                      {{-- <a href="{{ route('DbClient') }}" class="{{ request()->is('DbClients') ? 'active' : '' }} dropdown-item"> --}}
-                          All Clients
-                      {{-- </a> --}}
+                      <a href="{{ route('DbUser') }}" class="{{ request()->is('DbUsers') ? 'active' : '' }} dropdown-item">
+                          All Users
+                      </a>
                   </li>
                   <li>
-                      {{-- <a href="{{ route('ClientInsert') }}"
-                          class="{{ request()->is('ClientsInsert') ? 'active' : '' }} dropdown-item"> --}}
-                          Clients Insert
-                      {{-- </a> --}}
+                      <a href="{{ route('UserInsert') }}"
+                          class="{{ request()->is('UsersInsert') ? 'active' : '' }} dropdown-item">
+                          User Insert
+                      </a>
                   </li>
                   </ul>
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Staff <span>| This Year</span></h5>
+                  <h5 class="card-title">Users <span>| This Month</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-person-hearts"></i>
+                      <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      {{-- <h6>{{$CValue}}</h6> --}}
+                      <h6>{{$UValue}}</h6>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>
@@ -142,468 +231,161 @@
                 </div>
               </div>
 
-            </div><!-- End Client Card -->
+            </div><!-- End Project-Client Card -->
 
-               <!-- Project-Client Card -->
-               <div class="col-xxl-4 col-xl-6">
+          <!-- Recent Sales -->
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
 
-                <div class="card info-card customers-card">
-  
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-                      <li>
-                        {{-- <a href="{{ route('DbProjectClient') }}" class="{{ request()->is('DbProjectClients') ? 'active' : '' }} dropdown-item"> --}}
-                            All Clients Project
-                        {{-- </a> --}}
-                    </li>
-                    <li>
-                        {{-- <a href="{{ route('ProjectClientInsert') }}" class="{{ request()->is('ProjectClientsInsert') ? 'active' : '' }} dropdown-item"> --}}
-                        Clients Project Insert
-                        {{-- </a> --}}
-                    </li>
-                    </ul>
-                  </div>
-  
-                  <div class="card-body">
-                    <h5 class="card-title">Reservations <span>| This Month</span></h5>
-  
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-laptop"></i>
-                      </div>
-                      <div class="ps-3">
-                        {{-- <h6>{{$PCValue}}</h6> --}}
-                        <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-  
-                      </div>
-                    </div>
-  
-                  </div>
-                </div>
-  
-              </div><!-- End Project-Client Card -->
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
 
-              
-               <!-- Project-Client Card -->
-               <div class="col-xxl-4 col-xl-6">
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
 
-                <div class="card info-card customers-card">
-  
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-                      <li>
-                        {{-- <a href="{{ route('DbUser') }}" class="{{ request()->is('DbUsers') ? 'active' : '' }} dropdown-item"> --}}
-                            All Users
-                        {{-- </a> --}}
-                    </li>
-                    <li>
-                        {{-- <a href="{{ route('UserInsert') }}"
-                            class="{{ request()->is('UsersInsert') ? 'active' : '' }} dropdown-item"> --}}
-                            User Insert
-                        {{-- </a> --}}
-                    </li>
-                    </ul>
-                  </div>
-  
-                  <div class="card-body">
-                    <h5 class="card-title">Users <span>| This Month</span></h5>
-  
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
-                      </div>
-                      <div class="ps-3">
-                        {{-- <h6>{{$UValue}}</h6> --}}
-                        <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-  
-                      </div>
-                    </div>
-  
-                  </div>
-                </div>
-  
-              </div><!-- End Project-Client Card -->
+              <div class="card-body">
+                <h5 class="card-title">Recent Project <span>| Weekly</span></h5>
 
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      {{-- <th scope="col">#</th> --}}
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Download</th>
+                      <th scope="col">Date Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    @foreach ($recentRecords as $pt)
+                    <tr>
+                      
+                        {{-- <th scope="row">{{ ++$i }}</th> --}}
+                        <td><img src="/{{ $pt->img }}" width="60px" height="40px"
+                          class="rounded" alt=""></td>
+                        <td><a href="{{ $pt->live_link }}" class="text-primary fw-bold">{{ $pt->name }}</a></td>
+                                <td>{{ $pt->category->name }}</td>
+                                <td><a class="btn btn-dark btn-sm" href="{{ $pt->youtube_link }}" target="blank"><i class="bi bi-play-fill"></i></a>
+                                  <a class="btn btn-danger btn-sm" href="{{ $pt->download_link }}" target="blank"><i class="bi bi-download"></i></a></td>
+                                  <td>{{ $pt->updated_at=date("Y-m-d") }}</td>
+                    </tr>
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
-
-                  <!-- Line Chart -->
-                  <div id="reportsChart"></div>
-
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
-                  <!-- End Line Chart -->
-
-                </div>
+                      @endforeach
+                      
+                  </tbody>
+                </table>
 
               </div>
-            </div><!-- End Reports -->
 
-            <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
+            </div>
+          </div><!-- End Recent Sales -->
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
+          <!-- Top Selling -->
+          <div class="col-12">
+            <div class="card top-selling overflow-auto">
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
 
-                <div class="card-body">
-                  <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
 
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div class="card-body pb-0">
+                <h5 class="card-title">Recent Client <span>| Weekly</span></h5>
 
-                </div>
+                <table class="table table-borderless">
+                  <thead>
+                    <tr>
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Company</th>
+                      <th scope="col">Date Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  
+                    @foreach ($recentReservation as $cl)
+                    <tr>
+                      
+                        {{-- <th scope="row">{{ ++$i }}</th> --}}
+                        <td><img src="/{{ $cl->img }}" width="60px" height="40px"
+                          class="rounded" alt=""></td>
+                        <td><a href="" class="text-primary fw-bold">{{ $cl->name }}</a></td>
+                                <td>{{ $cl->email }}</td>
+                                <td class="fw-bold">{{ $cl->company }}</td>
+                                
+                                  <td>{{ $cl->updated_at=date("Y-m-d") }}</td>
+                    </tr>
+
+                      @endforeach
+                  </tbody>
+                </table>
 
               </div>
-            </div><!-- End Recent Sales -->
 
-            <!-- Top Selling -->
-            <div class="col-12">
-              <div class="card top-selling overflow-auto">
+            </div>
+          </div><!-- End Top Selling -->
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
+        </div>
+      </div><!-- End Left side columns -->
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
+      <!-- Right side columns -->
+      <div class="col-lg-4">
 
-                <div class="card-body pb-0">
-                  <h5 class="card-title">Top Selling <span>| Today</span></h5>
 
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th scope="col">Preview</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{url('/dashboard/assets/img/product-1.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{url('/dashboard/assets/img/product-2.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{url('/dashboard/assets/img/product-3.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{url('/dashboard/assets/img/product-4.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="{{url('/dashboard/assets/img/product-5.jpg')}}" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                      </tr>
-                    </tbody>
-                  </table>
+        <!-- News & Updates Traffic -->
+        <div class="card">
+          <div class="filter">
+            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+              <li class="dropdown-header text-start">
+                <h6>Filter</h6>
+              </li>
 
-                </div>
-
-              </div>
-            </div><!-- End Top Selling -->
-
+              <li><a class="dropdown-item" href="#">Today</a></li>
+              <li><a class="dropdown-item" href="#">This Month</a></li>
+              <li><a class="dropdown-item" href="#">This Year</a></li>
+            </ul>
           </div>
-        </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
+          {{-- <div class="card-body pb-0">
+            <h5 class="card-title">Technologies &amp; Updates <span>| Today</span></h5>
 
-          <!-- Website Traffic -->
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
+            <div class="news">
+              @foreach ($recentTechnology as $rt)
+              <div class="post-item clearfix">
+                <img style="width:50px; hight:40px; " src="/{{ $rt->img }}" alt="">
+                <h4><a href="#">{{$rt->name}}</a></h4>
+                <p>{{$rt->desc}}</p>
+              </div>
+              @endforeach
 
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
+            </div><!-- End sidebar recent posts-->
 
-            <div class="card-body pb-0">
-              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+          </div> --}}
+        </div><!-- End News & Updates -->
 
-              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+      </div><!-- End Right side columns -->
 
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#trafficChart")).setOption({
-                    tooltip: {
-                      trigger: 'item'
-                    },
-                    legend: {
-                      top: '5%',
-                      left: 'center'
-                    },
-                    series: [{
-                      name: 'Access From',
-                      type: 'pie',
-                      radius: ['40%', '70%'],
-                      avoidLabelOverlap: false,
-                      label: {
-                        show: false,
-                        position: 'center'
-                      },
-                      emphasis: {
-                        label: {
-                          show: true,
-                          fontSize: '18',
-                          fontWeight: 'bold'
-                        }
-                      },
-                      labelLine: {
-                        show: false
-                      },
-                      data: [{
-                          value: 1048,
-                          name: 'Search Engine'
-                        },
-                        {
-                          value: 735,
-                          name: 'Direct'
-                        },
-                        {
-                          value: 580,
-                          name: 'Email'
-                        },
-                        {
-                          value: 484,
-                          name: 'Union Ads'
-                        },
-                        {
-                          value: 300,
-                          name: 'Video Ads'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
+    </div>
+  </section>
 
-            </div>
-          </div><!-- End Website Traffic -->
-
-          <!-- News & Updates Traffic -->
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
-
-              <div class="news">
-                <div class="post-item clearfix">
-                  <img src="{{url('/dashboard/assets/img/news-1.jpg')}}" alt="">
-                  <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                  <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{{url('/dashboard/assets/img/news-2.jpg')}}" alt="">
-                  <h4><a href="#">Quidem autem et impedit</a></h4>
-                  <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{{url('/dashboard/assets/img/news-3.jpg')}}" alt="">
-                  <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-                  <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{{url('/dashboard/assets/img/news-4.jpg')}}" alt="">
-                  <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                  <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="{{url('/dashboard/assets/img/news-5.jpg')}}" alt="">
-                  <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-                  <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
-                </div>
-
-              </div><!-- End sidebar recent posts-->
-
-            </div>
-          </div><!-- End News & Updates -->
-
-        </div><!-- End Right side columns -->
-
-      </div>
-    </section>
-
-  </main><!-- End #main -->
+</main><!-- End #main -->
 @endsection

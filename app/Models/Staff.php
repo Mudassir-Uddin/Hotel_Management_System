@@ -12,8 +12,8 @@ class Staff extends Model
     protected $table = "Staff";
     protected $primaryKey = "id";
     
-    public function user()
+    public function Users()
     {
-        return $this->belongsTo(user::class, 'User_id');
+        return $this->belongsTo(Users::class, 'User_id');
     }
 }

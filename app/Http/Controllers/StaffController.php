@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -11,7 +12,8 @@ class StaffController extends Controller
     function Staff(){
         
         $Staff = Staff::all();
-        return view('dashboard.Staff.index',compact('Staff'));
+        $user = Users::all();
+        return view('dashboard.Staff.index',compact('Staff','user'));
         
     }
     function insert()
@@ -52,10 +54,7 @@ class StaffController extends Controller
     {
         $Staff = Staff::find($id);
         
-        $Staff->name = $req->name;
-        $Staff->email = $req->email;
         $Staff->phone_number = $req->phone_number;
-        $Staff->role = $req->role;
         $Staff->salary = $req->salary;
         $Staff->date_of_joining = $req->date_of_joining;
         $Staff->save();

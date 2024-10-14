@@ -24,38 +24,10 @@
                                 @csrf
 
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingText" value="{{ $Staff->name }}"
-                                        name="name" placeholder="jhondoe">
-                                    <label for="floatingText">Staffname</label>
-                                    @error('name')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingText" value="{{ $Staff->email }}"
-                                        name="email" placeholder="jhondoe">
-                                    <label for="floatingText">email</label>
-                                    @error('email')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-floating mb-3">
                                     <input type="number" class="form-control" id="floatingText" value="{{ $Staff->phone_number }}"
                                         name="phone_number" placeholder="jhondoe">
                                     <label for="floatingText">phone_number</label>
                                     @error('phone_number')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingText" value="{{ $Staff->role }}"
-                                        name="role" placeholder="jhondoe">
-                                    <label for="floatingText">role</label>
-                                    @error('role')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
