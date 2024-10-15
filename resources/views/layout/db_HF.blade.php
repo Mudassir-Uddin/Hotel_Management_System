@@ -40,12 +40,12 @@
 <body>
 
     @php
-    use Illuminate\Support\Facades\Session;
-    $userRole = '';
-    if (Session::has('role')) {
-        $userRole = Session::get('role');
-    }
-@endphp
+        use Illuminate\Support\Facades\Session;
+        $userRole = '';
+        if (Session::has('role')) {
+            $userRole = Session::get('role');
+        }
+    @endphp
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -219,60 +219,74 @@
                 </li><!-- End Messages Nav -->
 
                 <li class="nav-item dropdown pe-3">
-                    @if (session()->has('email'))
-
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ session()->get('img') }}" alt="Profile"
-                            class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ session()->get('name') }}</span>
-                        @else
-                        <a href="{{ url('/login') }}" class="my-2" style="font-size:25px;">Login</a>
+                        @php
+
+                            use App\Models\User;
+                            use App\Models\Users;
+                            use Illuminate\Http\Request;
+                            use Illuminate\Support\Facades\DB;
+                            use Illuminate\Support\Facades\Hash;
+                            // use Illuminate\Support\Facades\Session;
+                            $user = users::where('id', Session::get('id'))->first();
+                        @endphp
+                        @if ($user)
+                            {{-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">     --}}
+                            <img class="rounded-circle me-lg-2" src="{{ $user->img }}" alt=""
+                                style="width: 40px; height: 40px;">
+                        @endif
+
+                        @if (session()->has('email'))
+                            @if ($user)
+                                <span class="fw-bolder d-none d-lg-inline-flex">{{ $user->name }}</span>
+                                <span class="d-none d-md-block dropdown-toggle ps-2"></span>
+                            @endif
+                        @endif
                     </a><!-- End Profile Iamge Icon -->
-                    @endif
-                    {{-- <span>Admin</span> --}}
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>{{ session()->get('name') }}</h6>
-                            <span>{{session()->get('role')==3 ?  "Visitor" : "Admin"}}</span>
+                            @if (session()->has('email'))
+                                @if ($user)
+                                    <h6>{{ $user->name }}</h6>
+                                    <span>{{ $user->role == 2 ? 'user' : 'Admin' }}</span>
+                                @endif
+                            @endif
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            @if (session()->has('email'))
+                                @if ($user)
+                                    <a class="dropdown-item d-flex align-items-center"
+                                        href="{{ url('/Profileedit') }}/{{ $user->id * 548548 }}">
+                                        <i class="bi bi-person"></i>
+                                        <span>My Profile</span>
+                                    </a>
+                                @endif
+                            @endif
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ url('/') }}">
                                 <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
+                                <span>Website</span>
                             </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{url('/logout')}}">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ url('/logout') }}">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -280,6 +294,7 @@
 
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
+
 
             </ul>
         </nav><!-- End Icons Navigation -->
@@ -290,181 +305,219 @@
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
+            @if ($userRole == 1 || $userRole == 3)
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('Admindashboard') ? 'active' : '' }}"
+                        href="{{ route('Admindashboard') }}">
+                        <i class="bi bi-moon-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed"
+                        class=" {{ request()->is('Dbguests') ? 'active' : '' }} || {{ request()->is('guestsInsert') ? 'active' : '' }}"
+                        data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person"></i><span>guests</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('Dbguest') }}"
+                                class="{{ request()->is('Dbguests') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>All guests</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('guestInsert') }}"
+                                class="{{ request()->is('guestsInsert') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Guest Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Users Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed {{ request()->is('Dbrooms') ? 'active' : '' }} || {{ request()->is('roomsInsert') ? 'active' : '' }}"
+                        data-bs-target="#components" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-menu-button-wide"></i><span>Rooms</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('Dbroom') }}" class="{{ request()->is('Dbrooms') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>All Rooom</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('roomInsert') }}"
+                                class="{{ request()->is('roomsInsert') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Rooms Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Clients Nav -->
+
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed {{ request()->is('Dbreservations') ? 'active' : '' }} || {{ request()->is('reservationsInsert') ? 'active' : '' }}"
+                        data-bs-target="#compon-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-bar-chart"></i><span>Reservation</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="compon-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('Dbreservation') }}">
+                                <i
+                                    class="bi bi-circle {{ request()->is('Dbreservations') ? 'active' : '' }}"></i><span>All
+                                    Reservation</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('reservationInsert') }}">
+                                <i
+                                    class="bi bi-circle {{ request()->is('reservationsInsert') ? 'active' : '' }}"></i><span>Reservation
+                                    Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Reservation Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed {{ request()->is('Dbpayments') ? 'active' : '' }} || {{ request()->is('paymentsInsert') ? 'active' : '' }}"
+                        data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-layout-text-window-reverse"></i><span>payments</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('Dbpayment') }}"
+                                class="{{ request()->is('Dbpayments') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>All payments</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('paymentInsert') }}"
+                                class="{{ request()->is('paymentsInsert') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>payments Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Tables Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed {{ request()->is('Dbstaffs') ? 'active' : '' }} || {{ request()->is('staffsInsert') ? 'active' : '' }}"
+                        data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-journal-text"></i><span>staffs</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('Dbstaff') }}"
+                                class="{{ request()->is('Dbstaffs') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>All staffs</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('staffInsert') }}"
+                                class="{{ request()->is('staffsInsert') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>staff Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End staff Nav -->
+
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed {{ request()->is('DBUsers') ? 'active' : '' }} || {{ request()->is('UsersInsert') ? 'active' : '' }}"
+                        data-bs-target="#for" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="for" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('DbUser') }}" class="{{ request()->is('DBUsers') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>All Users</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('UserInsert') }}"
+                                class="{{ request()->is('UsersInsert') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>User Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Service Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed {{ request()->is('DbContacts') ? 'active' : '' }} || {{ request()->is('ContactsInsert') ? 'active' : '' }}"
+                        data-bs-target="#charts-n" data-bs-toggle="collapse">
+                        <i class="bi bi-envelope"></i><span>User Contact</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="charts-n" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('DbContact') }}"
+                                class="{{ request()->is('DbContacts') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>All User Contact</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('ContactInsert') }}"
+                                class="{{ request()->is('ContactsInsert') ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>User Contact Insert</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Contact Page Nav -->
+            @endif
+
+            @if ($userRole == 2)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/Profileedit') }}/{{ $user->id * 548548 }}">
+                        <i class="bi bi-moon-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed " href="{{ url('/') }}">
+                        <i class="bi bi-gem"></i><span>Website</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed " href="{{ url('/rooms') }}">
+                        <i class="bi bi-bar-chart"></i><span>Rooms</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed " href="{{ url('/about') }}">
+                        <i class="bi bi-layout-text-window-reverse"></i><span>About Us</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed " href="{{ url('/contactus') }}">
+                        <i class="bi bi-envelope"></i><span>Contact Us</span>
+                    </a>
+                </li>
+            @endif
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('Admindashboard') ? 'active' : '' }}"
-                    href="{{ route('Admindashboard') }}">
-                    <i class="bi bi-moon-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed"
-                    class=" {{ request()->is('Dbguests') ? 'active' : '' }} || {{ request()->is('guestsInsert') ? 'active' : '' }}"
-                    data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-person"></i><span>guests</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('Dbguest') }}" class="{{ request()->is('Dbguests') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>All guests</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('guestInsert') }}"
-                            class="{{ request()->is('guestsInsert') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Guest Insert</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Users Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed {{ request()->is('Dbrooms') ? 'active' : '' }} || {{ request()->is('roomsInsert') ? 'active' : '' }}"
-                    data-bs-target="#components" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Rooms</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('Dbroom') }}" class="{{ request()->is('Dbrooms') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>All Rooom</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('roomInsert') }}"
-                            class="{{ request()->is('roomsInsert') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>Rooms Insert</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Clients Nav -->
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed {{ request()->is('Dbreservations') ? 'active' : '' }} || {{ request()->is('reservationsInsert') ? 'active' : '' }}"
-                    data-bs-target="#compon-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-bar-chart"></i><span>Reservation</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="compon-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('Dbreservation') }}">
-                            <i class="bi bi-circle {{ request()->is('Dbreservations') ? 'active' : '' }}"></i><span>All
-                                Reservation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('reservationInsert') }}">
-                            <i
-                                class="bi bi-circle {{ request()->is('reservationsInsert') ? 'active' : '' }}"></i><span>Reservation
-                                Insert</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Client Project Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed {{ request()->is('Dbpayments') ? 'active' : '' }} || {{ request()->is('paymentsInsert') ? 'active' : '' }}"
-                    data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>payments</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('Dbpayment') }}"
-                            class="{{ request()->is('Dbpayments') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>All payments</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('paymentInsert') }}"
-                            class="{{ request()->is('paymentsInsert') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>payments Insert</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Tables Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed {{ request()->is('Dbstaffs') ? 'active' : '' }} || {{ request()->is('staffsInsert') ? 'active' : '' }}"
-                    data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-journal-text"></i><span>staffs</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('Dbstaff') }}"
-                            class="{{ request()->is('Dbstaffs') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>All staffs</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('staffInsert') }}"
-                            class="{{ request()->is('staffsInsert') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>staff Insert</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End staff Nav -->
-
-            
-            <li class="nav-item">
-                <a class="nav-link collapsed {{ request()->is('DBUsers') ? 'active' : '' }} || {{ request()->is('UsersInsert') ? 'active' : '' }}"
-                    data-bs-target="#for" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-person"></i><span>Users</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="for" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('DbUser') }}"
-                            class="{{ request()->is('DBUsers') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>All Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('UserInsert') }}"
-                            class="{{ request()->is('UsersInsert') ? 'active' : '' }}">
-                            <i class="bi bi-circle"></i><span>User Insert</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Service Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed {{ request()->is('DbContacts') ? 'active' : '' }} || {{ request()->is('ContactsInsert') ? 'active' : '' }}"
-            data-bs-target="#charts-n" data-bs-toggle="collapse">
-            <i class="bi bi-envelope"></i><span>User Contact</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-n" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="{{ route('DbContact') }}"
-                    class="{{ request()->is('DbContacts') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>All User Contact</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('ContactInsert') }}"
-                    class="{{ request()->is('ContactsInsert') ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>User Contact Insert</span>
-                </a>
-            </li>
-        </ul>
-    </li><!-- End Contact Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('/register')}}">
+                <a class="nav-link collapsed" href="{{ url('/register') }}">
                     <i class="bi bi-card-list"></i>
                     <span>Register</span>
                 </a>
             </li><!-- End Register Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('/login')}}">
+                <a class="nav-link collapsed" href="{{ url('/login') }}">
                     <i class="bi bi-box-arrow-in-right"></i>
                     <span>Login</span>
                 </a>
             </li><!-- End Login Page Nav -->
+
 
             {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="pages-error-404.html">
