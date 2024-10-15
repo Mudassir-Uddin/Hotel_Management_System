@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\guestsController;
 use App\Http\Controllers\HomeController;
@@ -21,6 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/rooms', [HomeController::class, 'rooms'])->name('rooms');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
+Route::post('/UserContactsStore', [HomeController::class, 'UserContactsStore'])->name('UserContactsStore');
 
 // Dashboard
 
@@ -89,3 +91,12 @@ Route::post('/loginstore', [AuthenticationController::class,'loginstore']);
 Route::get('/logout', [AuthenticationController::class,'logout']);
 Route::get('/update', [AuthenticationController::class,'update']);
 #endregion
+
+// DB Contacts
+
+Route::get('/DbContacts', [ContactController::class, 'Contact'])->name('DbContact');
+Route::get('/ContactsInsert', [ContactController::class, 'insert'])->name('ContactInsert');
+Route::post('/ContactsStore', [ContactController::class, 'Store']);
+Route::get('/Contactsedit/{id}', [ContactController::class, 'edit']);
+Route::post('/Contactsupdate/{id}', [ContactController::class, 'update']);
+Route::get('/Contactsdelete/{id}', [ContactController::class, 'delete']);

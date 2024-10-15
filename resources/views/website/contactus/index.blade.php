@@ -17,22 +17,36 @@
    <div class="container">
       <div class="row">
          <div class="col-md-6">
-            <form id="request" class="main_form">
+            <form action="{{ url('/UserContactsStore') }}" id="request" class="main_form" method="POST" enctype="multipart/form-data">
+
+               @csrf
                <div class="row">
                   <div class="col-md-12 ">
-                     <input class="contactus" placeholder="Name" type="type" name="Name"> 
+                     <input class="contactus" value="{{ old('name') }}" placeholder="Name" type="text" name="name"> 
+                     @error('name')
+                  <p class="text-danger">{{ $message }}</p>
+              @enderror
                   </div>
                   <div class="col-md-12">
-                     <input class="contactus" placeholder="Email" type="type" name="Email"> 
+                     <input class="contactus" placeholder="Email" type="email" value="{{ old('email') }}" name="email"> 
+                     @error('email')
+                  <p class="text-danger">{{ $message }}</p>
+              @enderror
                   </div>
                   <div class="col-md-12">
-                     <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
+                     <input class="contactus" placeholder="Phone Number" value="{{ old('phone') }}" type="number" name="phone">  
+                     @error('phone')
+                     <p class="text-danger">{{ $message }}</p>
+                 @enderror                        
                   </div>
                   <div class="col-md-12">
-                     <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
+                     <textarea class="textarea" placeholder="Message" type="type" value="{{ old('message') }}" Message="Name" name="message"></textarea>
+                     @error('message')
+                     <p class="text-danger">{{ $message }}</p>
+                 @enderror       
                   </div>
                   <div class="col-md-12">
-                     <button class="send_btn">Send</button>
+                     <button class="send_btn" type="submit">Send</button>
                   </div>
                </div>
             </form>

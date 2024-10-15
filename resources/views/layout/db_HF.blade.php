@@ -432,22 +432,22 @@
             </li><!-- End Service Nav -->
 
       <li class="nav-item">
-        {{-- <a class="nav-link collapsed {{ request()->is('DbContacts') ? 'active' : '' }} || {{ request()->is('ContactsInsert') ? 'active' : '' }}"
-            data-bs-target="#charts-n" data-bs-toggle="collapse"> --}}
+        <a class="nav-link collapsed {{ request()->is('DbContacts') ? 'active' : '' }} || {{ request()->is('ContactsInsert') ? 'active' : '' }}"
+            data-bs-target="#charts-n" data-bs-toggle="collapse">
             <i class="bi bi-envelope"></i><span>User Contact</span><i class="bi bi-chevron-down ms-auto"></i>
-        {{-- </a> --}}
+        </a>
         <ul id="charts-n" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                {{-- <a href="{{ route('DbContact') }}"
-                    class="{{ request()->is('DbContacts') ? 'active' : '' }}"> --}}
+                <a href="{{ route('DbContact') }}"
+                    class="{{ request()->is('DbContacts') ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>All User Contact</span>
-                {{-- </a> --}}
+                </a>
             </li>
             <li>
-                {{-- <a href="{{ route('ContactInsert') }}"
-                    class="{{ request()->is('ContactsInsert') ? 'active' : '' }}"> --}}
+                <a href="{{ route('ContactInsert') }}"
+                    class="{{ request()->is('ContactsInsert') ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>User Contact Insert</span>
-                {{-- </a> --}}
+                </a>
             </li>
         </ul>
     </li><!-- End Contact Page Nav -->
